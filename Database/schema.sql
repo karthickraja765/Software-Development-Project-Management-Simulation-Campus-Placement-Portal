@@ -1,0 +1,9 @@
+CREATE TABLE Students (
+    StudentID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Email TEXT NOT NULL UNIQUE,
+    Department TEXT NOT NULL,
+    Password TEXT NOT NULL,
+    ResumeLink TEXT,
+    CreatedDate DATETIME DEFAULT CURRENT_TIMESTAMP
+);
