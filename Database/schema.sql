@@ -7,3 +7,38 @@ CREATE TABLE Students (
     ResumeLink TEXT,
     CreatedDate DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE IF NOT EXISTS Applications (
+    AppID INTEGER PRIMARY KEY AUTOINCREMENT,
+    StudentID INTEGER NOT NULL,
+    JobID INTEGER NOT NULL,
+    Status TEXT DEFAULT 'Applied',
+
+    FOREIGN KEY (StudentID)
+        REFERENCES Students(StudentID)
+);
+CREATE TABLE IF NOT EXISTS Jobs (
+    JobID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Company TEXT NOT NULL,
+    Role TEXT NOT NULL,
+    Package REAL,
+    Eligibility TEXT,
+    CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS Companies (
+    CompanyID INTEGER PRIMARY KEY AUTOINCREMENT,
+    CompanyName TEXT NOT NULL,
+    Industry TEXT,
+    Location TEXT,
+    CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS Recruiters (
+    RecruiterID INTEGER PRIMARY KEY AUTOINCREMENT,
+    CompanyID INTEGER NOT NULL,
+    RecruiterName TEXT NOT NULL,
+    Email TEXT NOT NULL,
+    Password TEXT NOT NULL,
+
+    FOREIGN KEY (CompanyID)
+        REFERENCES Companies(CompanyID)
+);
+
